@@ -72,8 +72,6 @@
             //每筆資料是物件，所以預設值給一個空物件
             const [tempProduct,setTempProduct] = React.useState({});
 
-
-
             return  (
                 <div className="container mt-5">
                     <div className="row ">
@@ -107,21 +105,24 @@
                         </div>
                         <div className="col-6">
                             <h2 className="fw-bold">單一產品細節</h2>
-                            <div className="card">
-                            <img src={tempProduct.imageUrl} class="card-img-top" alt={tempProduct.title} />
-                            <div className="card-body">
-                                <h5 className="card-title">{tempProduct.title}<span className="badge text-bg-primary">{tempProduct.category}</span></h5>
-                                <p className="card-text">商品描述：{tempProduct.description}</p>
-                                <p className="card-text">商品內容：{tempProduct.content}</p>
-                                <p className="card-text"><del>{tempProduct.origin_price}</del>/{tempProduct.price}</p> 
-                                <h5 className="card-title">更多圖片：</h5>   
-                                {
-                                    tempProduct.imagesUrl?.map((image,index) => (
-                                         <img src={image} key={index}  className="img-fluid" alt={tempProduct.title} />
-                                    ))
-                                }                          
+                            {tempProduct.title ?(
+                                <div className="card">
+                                <img src={tempProduct.imageUrl} class="card-img-top" alt={tempProduct.title} />
+                                <div className="card-body">
+                                    <h5 className="card-title">{tempProduct.title}<span className="badge text-bg-primary">{tempProduct.category}</span></h5>
+                                    <p className="card-text">商品描述：{tempProduct.description}</p>
+                                    <p className="card-text">商品內容：{tempProduct.content}</p>
+                                    <p className="card-text"><del>{tempProduct.origin_price}</del>/{tempProduct.price}元</p> 
+                                    <h5 className="card-title">更多圖片：</h5>   
+                                    {
+                                        tempProduct.imagesUrl?.map((image,index) => (
+                                            //此範例的圖片不會新增或刪除，可用index作為key值
+                                            <img src={image} key={index}  className="img-fluid" alt={tempProduct.title} />
+                                        ))
+                                    }                          
+                                </div>
                             </div>
-                            </div>
+                            ) : <p>請選擇一個商品查看</p>}
                         </div>
                     </div>
                 </div>
